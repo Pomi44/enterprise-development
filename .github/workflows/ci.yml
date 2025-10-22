@@ -24,11 +24,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore
-        run: dotnet restore ./Library.sln
+      - name: dotnet restore
+        run: dotnet restore ./Library/Library.sln
 
-      - name: Build
-        run: dotnet build ./Library.sln --no-restore --configuration Release
+      - name: Build solution
+        run: dotnet build ./Library/Library.sln --no-restore
 
       - name: Test
-        run: dotnet test ./Library.Tests/Library.Tests.csproj --no-build --configuration Release --verbosity normal
+        run: dotnet test ./Library/Library.Tests/Library.Tests.csproj --no-build --verbosity detailed
