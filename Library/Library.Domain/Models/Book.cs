@@ -8,7 +8,7 @@ public class Book
     /// <summary>
     /// Уникальный идентификатор книги
     /// </summary>
-    public required string Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Инвентарный номер
@@ -26,6 +26,11 @@ public class Book
     public required string Title { get; set; }
 
     /// <summary>
+    /// Инициалы и фамилии авторов 
+    /// </summary>
+    public string? Authors { get; set; }
+
+    /// <summary>
     /// Год издания
     /// </summary>
     public int Year { get; set; }
@@ -33,7 +38,7 @@ public class Book
     /// <summary>
     /// Идентификатор вида издания
     /// </summary>
-    public required string EditionTypeId { get; set; }
+    public required int EditionTypeId { get; set; }
 
     /// <summary>
     /// Вид издания (навигационное свойство)
@@ -43,16 +48,11 @@ public class Book
     /// <summary>
     /// Идентификатор издательства
     /// </summary>
-    public required string PublisherId { get; set; }
+    public required int PublisherId { get; set; }
 
     /// <summary>
     /// Издательство (навигационное свойство)
     /// </summary>
     public Publisher? Publisher { get; set; }
-
-    /// <summary>
-    /// Список авторов книги
-    /// </summary>
-    public List<Author> Authors { get; set; } = new();
 }
 

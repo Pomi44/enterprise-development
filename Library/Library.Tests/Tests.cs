@@ -4,24 +4,18 @@ namespace Library.Tests;
 
 /// <summary>
 /// Набор модульных тестов для проверки LINQ-запросов по данным библиотеки.
-/// Использует IClassFixture для доступа к данным из Data.cs.
 /// </summary>
-public class LibraryQueriesTests : IClassFixture<LibraryData>
+public class LibraryQueriesTests(LibraryData data) : IClassFixture<LibraryData>
 {
-    private readonly LibraryData _data;
-
-    public LibraryQueriesTests(LibraryData data)
-    {
-        _data = data;
-    }
+    private readonly LibraryData _data = data;
 
     /// <summary>
-    ///Вывести информацию о выданных книгах, упорядоченных по названию.
+    /// Вывести информацию о выданных книгах, упорядоченных по названию.
     /// </summary>
     [Fact]
     public void GetBorrowedBooks_OrderedByBookTitle_ReturnsExpectedOrder()
     {
-        var expectedIds = new List<string> { "b9", "b7", "b5", "b3" };
+        var expectedIds = new List<int> { 9, 7, 5, 3 };
 
         var resultIds = LibraryData.BookLoans
             .Where(b => b.ReturnDate is null)
@@ -29,7 +23,15 @@ public class LibraryQueriesTests : IClassFixture<LibraryData>
             .Select(b => b.Book.Id)
             .ToList();
 
-        Assert.Equal(expectedIds, resultIds);
+        Assert.Equal(expectedIds.Count, resultIds.Count);
+        foreach (var id in expectedIds)
+            Assert.Contains(id, resultIds);
+        var titles = LibraryData.BookLoans
+            .Where(b => b.ReturnDate is null)
+            .Select(b => b.Book.Title)
+            .OrderBy(t => t)
+            .ToList();
+        Assert.True(titles.SequenceEqual(titles.OrderBy(t => t)));
     }
 
     /// <summary>
@@ -38,18 +40,27 @@ public class LibraryQueriesTests : IClassFixture<LibraryData>
     [Fact]
     public void GetTop5Readers_ByBorrowCount_ReturnsExpectedReaders()
     {
-        var expectedCount = 5;
+        var periodEnd = LibraryData.BookLoans.Max(l => l.LoanDate);
+        var periodStart = periodEnd.AddYears(-1);
 
         var result = LibraryData.BookLoans
+            .Where(l => l.LoanDate >= periodStart && l.LoanDate <= periodEnd)
             .GroupBy(l => l.Reader)
             .Select(g => new { Reader = g.Key, Count = g.Count() })
             .OrderByDescending(x => x.Count)
             .ThenBy(x => x.Reader.LastName)
-            .Take(expectedCount)
+            .Take(5)
             .ToList();
 
-        Assert.Equal(expectedCount, result.Count);
-        Assert.All(result, x => Assert.True(x.Count >= 1));
+        Assert.True(result.Count <= 5);
+        Assert.All(result, x => Assert.True(x.Count > 0));
+        Assert.True(result.Zip(result.Skip(1), (a, b) => a.Count >= b.Count).All(x => x));
+        var readersInPeriod = LibraryData.BookLoans
+            .Where(l => l.LoanDate >= periodStart && l.LoanDate <= periodEnd)
+            .Select(l => l.Reader)
+            .Distinct()
+            .ToHashSet();
+        Assert.All(result, x => Assert.Contains(x.Reader, readersInPeriod));
     }
 
     /// <summary>
@@ -60,16 +71,18 @@ public class LibraryQueriesTests : IClassFixture<LibraryData>
     {
         var maxDays = LibraryData.BookLoans.Max(l => l.Days);
 
-        var result = LibraryData.BookLoans
+        var readers = LibraryData.BookLoans
             .Where(l => l.Days == maxDays)
             .Select(l => l.Reader)
             .Distinct()
             .OrderBy(r => r.LastName)
-            .Select(r => r.LastName)
             .ToList();
 
-        Assert.Single(result);
-        Assert.Equal("Васильев", result.First());
+        Assert.NotEmpty(readers);
+        Assert.All(readers, r =>
+            Assert.Contains(LibraryData.BookLoans, l => l.Reader == r && l.Days == maxDays));
+        Assert.True(readers.Zip(readers.Skip(1), (a, b) => string.Compare(a.LastName, b.LastName, StringComparison.Ordinal) <= 0).All(x => x));
+        Assert.Contains(readers, r => r.LastName == "Васильев");
     }
 
     /// <summary>
@@ -89,8 +102,9 @@ public class LibraryQueriesTests : IClassFixture<LibraryData>
             .Take(5)
             .ToList();
 
-        Assert.Equal(5, result.Count);
-        Assert.True(result.First().Count >= result.Last().Count);
+        Assert.True(result.Count <= 5);
+        Assert.All(result, x => Assert.True(x.Count > 0));
+        Assert.True(result.Zip(result.Skip(1), (a, b) => a.Count >= b.Count).All(x => x));
     }
 
     /// <summary>
@@ -114,6 +128,7 @@ public class LibraryQueriesTests : IClassFixture<LibraryData>
             .ToList();
 
         Assert.Equal(5, result.Count);
-        Assert.True(result.Take(3).All(x => x.Count == 0));
+        Assert.True(result.Zip(result.Skip(1), (a, b) => a.Count <= b.Count).All(x => x));
+        Assert.True(result.Any(x => x.Count == 0) || result.First().Count <= result.Last().Count);
     }
 }

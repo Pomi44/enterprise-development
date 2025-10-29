@@ -10,7 +10,7 @@ public class BookLoan
     /// <summary>
     /// Уникальный идентификатор записи выдачи
     /// </summary>
-    public required string Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Идентификатор книги
