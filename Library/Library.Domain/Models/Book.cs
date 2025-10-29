@@ -8,7 +8,7 @@ public class Book
     /// <summary>
     /// Уникальный идентификатор книги
     /// </summary>
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Инвентарный номер

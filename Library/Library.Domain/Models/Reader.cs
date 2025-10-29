@@ -8,7 +8,7 @@ public class Reader
     /// <summary>
     /// Уникальный идентификатор читателя
     /// </summary>
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
     /// <summary>
     /// Фамилия читателя
