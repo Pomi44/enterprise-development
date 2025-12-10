@@ -104,7 +104,7 @@ public sealed class AnalyticsController(IAnalyticsService analytics, ILogger<Ana
     }
 
     /// <summary>
-    /// Вывести топ 5 наиболее популярных издательств за последний год
+    /// Вывести топ 5 наиболее популярных издательств за заданный период
     /// </summary>
     /// <param name="periodStart">Начало периода</param>
     /// <param name="periodEnd">Конец периода</param>
@@ -143,7 +143,7 @@ public sealed class AnalyticsController(IAnalyticsService analytics, ILogger<Ana
     }
 
     /// <summary>
-    /// Вывести топ 5 наименее популярных книг за последний год
+    /// Вывести топ 5 наименее популярных книг за заданный период
     /// </summary>
     /// <param name="periodStart">Начало периода</param>
     /// <param name="periodEnd">Конец периода</param>
