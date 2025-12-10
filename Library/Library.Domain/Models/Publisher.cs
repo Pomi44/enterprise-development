@@ -9,6 +9,7 @@ public class Publisher
     /// Уникальный идентификатор издательства
     /// </summary>
     public required int Id { get; set; }
+
     /// <summary>
     /// Название издательства
     /// </summary>

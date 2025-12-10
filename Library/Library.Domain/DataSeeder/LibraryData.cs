@@ -41,8 +41,6 @@ public class LibraryData
         new Publisher { Id = 10, Name = "Fanbook" }
     ];
 
-
-
     /// <summary>
     /// Читатели.
     /// </summary>
@@ -65,35 +63,35 @@ public class LibraryData
     /// </summary>
     public static readonly List<Book> Books =
     [
-        new Book { Id = 1, InventoryNumber = 1001, CatalogCode = "ПШК-001", Title = "Руслан и Людмила", Authors = "А. С. Пушкин", Year = 1820, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 1, Publisher = Publishers[0] },
-        new Book { Id = 2, InventoryNumber = 1002, CatalogCode = "ТЛСТ-002", Title = "Война и мир", Authors = "Л. Н. Толстой", Year = 1869, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 2, Publisher = Publishers[1] },
-        new Book { Id = 3, InventoryNumber = 1003, CatalogCode = "ДСТ-003", Title = "Преступление и наказание", Authors = "Ф. М. Достоевский", Year = 1866, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 3, Publisher = Publishers[2] },
-        new Book { Id = 4, InventoryNumber = 1004, CatalogCode = "ЛРМ-004", Title = "Герой нашего времени", Authors = "М. Ю. Лермонтов", Year = 1840, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 1, Publisher = Publishers[0] },
-        new Book { Id = 5, InventoryNumber = 1005, CatalogCode = "ТРГН-005", Title = "Отцы и дети", Authors = "И. С. Тургенев", Year = 1862, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 2, Publisher = Publishers[1] },
-        new Book { Id = 6, InventoryNumber = 1006, CatalogCode = "БЛГ-006", Title = "Мастер и Маргарита", Authors = "М. А. Булгаков", Year = 1967, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 3, Publisher = Publishers[2] },
-        new Book { Id = 7, InventoryNumber = 1007, CatalogCode = "ГГЛ-007", Title = "Мёртвые души", Authors = "Н. В. Гоголь", Year = 1842, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 4, Publisher = Publishers[3] },
-        new Book { Id = 8, InventoryNumber = 1008, CatalogCode = "НБК-008", Title = "Лолита", Authors = "В. В. Набоков", Year = 1955, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 5, Publisher = Publishers[4] },
-        new Book { Id = 9, InventoryNumber = 1009, CatalogCode = "ПРШ-009", Title = "Кладовая солнца", Authors = "М. М. Пришвин", Year = 1945, EditionTypeId = 2, EditionType = EditionTypes[1], PublisherId = 6, Publisher = Publishers[5] },
-        new Book { Id = 10, InventoryNumber = 1010, CatalogCode = "СТРГ-010", Title = "Пикник на обочине", Authors = "А. Н. и Б. Н. Стругацкие", Year = 1972, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 7, Publisher = Publishers[6] },
-        new Book { Id = 11, InventoryNumber = 1011, CatalogCode = "ПШК-001-2", Title = "Руслан и Людмила", Authors = "А. С. Пушкин", Year = 1820, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 1, Publisher = Publishers[0] },
-        new Book { Id = 12, InventoryNumber = 1012, CatalogCode = "ТЛСТ-002-2", Title = "Война и мир", Authors = "Л. Н. Толстой", Year = 1869, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 2, Publisher = Publishers[1] },
-        new Book { Id = 13, InventoryNumber = 1013, CatalogCode = "БЛГ-006-2", Title = "Мастер и Маргарита", Authors = "М. А. Булгаков", Year = 1967, EditionTypeId = 1, EditionType = EditionTypes[0], PublisherId = 3, Publisher = Publishers[2] }
+        new Book { Id = 1, InventoryNumber = 1001, CatalogCode = "ПШК-001", Title = "Руслан и Людмила", Authors = "А. С. Пушкин", Year = 1820, EditionTypeId = 1, PublisherId = 1 },
+        new Book { Id = 2, InventoryNumber = 1002, CatalogCode = "ТЛСТ-002", Title = "Война и мир", Authors = "Л. Н. Толстой", Year = 1869, EditionTypeId = 1, PublisherId = 2 },
+        new Book { Id = 3, InventoryNumber = 1003, CatalogCode = "ДСТ-003", Title = "Преступление и наказание", Authors = "Ф. М. Достоевский", Year = 1866, EditionTypeId = 1, PublisherId = 3 },
+        new Book { Id = 4, InventoryNumber = 1004, CatalogCode = "ЛРМ-004", Title = "Герой нашего времени", Authors = "М. Ю. Лермонтов", Year = 1840, EditionTypeId = 1, PublisherId = 1 },
+        new Book { Id = 5, InventoryNumber = 1005, CatalogCode = "ТРГН-005", Title = "Отцы и дети", Authors = "И. С. Тургенев", Year = 1862, EditionTypeId = 1, PublisherId = 2 },
+        new Book { Id = 6, InventoryNumber = 1006, CatalogCode = "БЛГ-006", Title = "Мастер и Маргарита", Authors = "М. А. Булгаков", Year = 1967, EditionTypeId = 1, PublisherId = 3 },
+        new Book { Id = 7, InventoryNumber = 1007, CatalogCode = "ГГЛ-007", Title = "Мёртвые души", Authors = "Н. В. Гоголь", Year = 1842, EditionTypeId = 1, PublisherId = 4 },
+        new Book { Id = 8, InventoryNumber = 1008, CatalogCode = "НБК-008", Title = "Лолита", Authors = "В. В. Набоков", Year = 1955, EditionTypeId = 1, PublisherId = 5 },
+        new Book { Id = 9, InventoryNumber = 1009, CatalogCode = "ПРШ-009", Title = "Кладовая солнца", Authors = "М. М. Пришвин", Year = 1945, EditionTypeId = 2, PublisherId = 6 },
+        new Book { Id = 10, InventoryNumber = 1010, CatalogCode = "СТРГ-010", Title = "Пикник на обочине", Authors = "А. Н. и Б. Н. Стругацкие", Year = 1972, EditionTypeId = 1, PublisherId = 7 },
+        new Book { Id = 11, InventoryNumber = 1011, CatalogCode = "ПШК-001-2", Title = "Руслан и Людмила", Authors = "А. С. Пушкин", Year = 1820, EditionTypeId = 1, PublisherId = 1 },
+        new Book { Id = 12, InventoryNumber = 1012, CatalogCode = "ТЛСТ-002-2", Title = "Война и мир", Authors = "Л. Н. Толстой", Year = 1869, EditionTypeId = 1, PublisherId = 2 },
+        new Book { Id = 13, InventoryNumber = 1013, CatalogCode = "БЛГ-006-2", Title = "Мастер и Маргарита", Authors = "М. А. Булгаков", Year = 1967, EditionTypeId = 1, PublisherId = 3 }
     ];
 
     /// <summary>
     /// Выдачи книг читателям.
     /// </summary>
-    public static readonly List<BookLoan> BookLoans = 
+    public static readonly List<BookLoan> BookLoans =
     [
-        new BookLoan { Id = 1,  BookId = "b1",  Book = Books[0],  Reader = Readers[0], LoanDate = new DateTime(2024,12,20), Days = 20, ReturnDate = new DateTime(2025,1,10) },
-        new BookLoan { Id = 2,  BookId = "b2",  Book = Books[1],  Reader = Readers[1], LoanDate = new DateTime(2025,1, 5), Days = 14, ReturnDate = new DateTime(2025,1,19) },
-        new BookLoan { Id = 3,  BookId = "b3",  Book = Books[2],  Reader = Readers[2], LoanDate = new DateTime(2025,2,10), Days = 30, ReturnDate = null },
-        new BookLoan { Id = 4,  BookId = "b4",  Book = Books[3],  Reader = Readers[3], LoanDate = new DateTime(2025,3, 1), Days =  7, ReturnDate = new DateTime(2025,3, 8) },
-        new BookLoan { Id = 5,  BookId = "b5",  Book = Books[4],  Reader = Readers[4], LoanDate = new DateTime(2025,3,15), Days = 21, ReturnDate = null },
-        new BookLoan { Id = 6,  BookId = "b6",  Book = Books[5],  Reader = Readers[5], LoanDate = new DateTime(2025,4, 2), Days = 10, ReturnDate = new DateTime(2025,4,12) },
-        new BookLoan { Id = 7,  BookId = "b7",  Book = Books[6],  Reader = Readers[6], LoanDate = new DateTime(2025,5,10), Days = 60, ReturnDate = null },
-        new BookLoan { Id = 8,  BookId = "b8",  Book = Books[7],  Reader = Readers[7], LoanDate = new DateTime(2025,6, 1), Days =  5, ReturnDate = new DateTime(2025,6, 6) },
-        new BookLoan { Id = 9,  BookId = "b9",  Book = Books[8],  Reader = Readers[8], LoanDate = new DateTime(2025,7,20), Days = 14, ReturnDate = null },
-        new BookLoan { Id = 10, BookId = "b10", Book = Books[9],  Reader = Readers[9], LoanDate = new DateTime(2025,8,10), Days = 30, ReturnDate = new DateTime(2025,9, 9) }
+        new BookLoan { Id = 1,  BookId = 1,  ReaderId = 1,  LoanDate = new DateTime(2024, 12, 20), Days = 20, ReturnDate = new DateTime(2025,  1, 10) },
+        new BookLoan { Id = 2,  BookId = 2,  ReaderId = 2,  LoanDate = new DateTime(2025,  1,  5), Days = 14, ReturnDate = new DateTime(2025,  1, 19) },
+        new BookLoan { Id = 3,  BookId = 3,  ReaderId = 3,  LoanDate = new DateTime(2025,  2, 10), Days = 30, ReturnDate = null },
+        new BookLoan { Id = 4,  BookId = 4,  ReaderId = 4,  LoanDate = new DateTime(2025,  3,  1), Days =  7, ReturnDate = new DateTime(2025,  3,  8) },
+        new BookLoan { Id = 5,  BookId = 5,  ReaderId = 5,  LoanDate = new DateTime(2025,  3, 15), Days = 21, ReturnDate = null },
+        new BookLoan { Id = 6,  BookId = 6,  ReaderId = 6,  LoanDate = new DateTime(2025,  4,  2), Days = 10, ReturnDate = new DateTime(2025,  4, 12) },
+        new BookLoan { Id = 7,  BookId = 7,  ReaderId = 7,  LoanDate = new DateTime(2025,  5, 10), Days = 60, ReturnDate = null },
+        new BookLoan { Id = 8,  BookId = 8,  ReaderId = 8,  LoanDate = new DateTime(2025,  6,  1), Days =  5, ReturnDate = new DateTime(2025,  6,  6) },
+        new BookLoan { Id = 9,  BookId = 9,  ReaderId = 9,  LoanDate = new DateTime(2025,  7, 20), Days = 14, ReturnDate = null },
+        new BookLoan { Id = 10, BookId = 10, ReaderId = 10, LoanDate = new DateTime(2025,  8, 10), Days = 30, ReturnDate = new DateTime(2025,  9,  9) }
     ];
 }

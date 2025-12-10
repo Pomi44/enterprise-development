@@ -43,7 +43,7 @@ public class Book
     /// <summary>
     /// Вид издания (навигационное свойство)
     /// </summary>
-    public required EditionType EditionType { get; set; }
+    public EditionType? EditionType { get; set; }
 
     /// <summary>
     /// Идентификатор издательства
@@ -55,4 +55,3 @@ public class Book
     /// </summary>
     public Publisher? Publisher { get; set; }
 }
-

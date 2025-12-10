@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Library.Domain.Models;
+﻿namespace Library.Domain.Models;
 
 /// <summary>
 /// Выдача книги читателю
@@ -15,17 +13,22 @@ public class BookLoan
     /// <summary>
     /// Идентификатор книги
     /// </summary>
-    public required string BookId { get; set; }
+    public required int BookId { get; set; }
 
     /// <summary>
     /// Книга, которая выдана
     /// </summary>
-    public required Book Book { get; set; }
+    public Book? Book { get; set; }
+
+    /// <summary>
+    /// Идентификатор читателя
+    /// </summary>
+    public required int ReaderId { get; set; }
 
     /// <summary>
     /// Читатель, которому выдана книга
     /// </summary>
-    public required Reader Reader { get; set; }
+    public Reader? Reader { get; set; }
 
     /// <summary>
     /// Дата выдачи книги
