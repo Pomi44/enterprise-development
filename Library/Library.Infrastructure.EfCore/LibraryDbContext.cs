@@ -1,4 +1,5 @@
-﻿using Library.Domain.Models;
+﻿using Library.Domain.DataSeeder;
+using Library.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Infrastructure.EfCore;
@@ -58,6 +59,8 @@ public class LibraryDbContext(DbContextOptions contextOptions) : DbContext(conte
                 .HasColumnName("registration_date")
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            e.HasData(LibraryData.Readers);
         });
 
         modelBuilder.Entity<Publisher>(e =>
@@ -72,6 +75,8 @@ public class LibraryDbContext(DbContextOptions contextOptions) : DbContext(conte
             e.HasIndex(x => x.Name)
                 .HasDatabaseName("ux_publishers_name")
                 .IsUnique();
+
+            e.HasData(LibraryData.Publishers);
         });
 
         modelBuilder.Entity<EditionType>(e =>
@@ -86,6 +91,8 @@ public class LibraryDbContext(DbContextOptions contextOptions) : DbContext(conte
             e.HasIndex(x => x.Name)
                 .HasDatabaseName("ux_edition_types_name")
                 .IsUnique();
+
+            e.HasData(LibraryData.EditionTypes);
         });
 
         modelBuilder.Entity<Book>(e =>
@@ -121,6 +128,8 @@ public class LibraryDbContext(DbContextOptions contextOptions) : DbContext(conte
                 .HasForeignKey(x => x.PublisherId)
                 .HasConstraintName("fk_books_publisher_id")
                 .OnDelete(DeleteBehavior.Restrict);
+
+            e.HasData(LibraryData.Books);
         });
 
         modelBuilder.Entity<BookLoan>(e =>
@@ -170,6 +179,8 @@ public class LibraryDbContext(DbContextOptions contextOptions) : DbContext(conte
                 .HasForeignKey(x => x.ReaderId)
                 .HasConstraintName("fk_book_loans_reader_id")
                 .OnDelete(DeleteBehavior.Restrict);
+
+            e.HasData(LibraryData.BookLoans);
         });
     }
 }
