@@ -108,9 +108,9 @@ public class BookLoanKafkaConsumer(
 
         var bookLoans = scope.ServiceProvider.GetRequiredService<IApplicationService<BookLoanDto, BookLoanCreateUpdateDto, int>>();
 
-        var books = scope.ServiceProvider.GetRequiredService<IApplicationService<BookDto, BookCreateUpdateDto, int>>();
+        var books = scope.ServiceProvider.GetRequiredService<IBookService>();
 
-        var readers = scope.ServiceProvider.GetRequiredService<IApplicationService<ReaderDto, ReaderCreateUpdateDto, int>>();
+        var readers = scope.ServiceProvider.GetRequiredService<IReaderService>();
 
         foreach (var dto in payload)
         {
@@ -119,7 +119,7 @@ public class BookLoanKafkaConsumer(
             var (isValid, error) = await Validate(dto, books, readers);
             if (!isValid)
             {
-                logger.LogWarning("Skipping BookLoan contract from message {key} because {reason} BookId={bookId} ReaderId={readerId}", messageKey, error, dto.BookId, dto.ReaderId);
+                logger.LogWarning("Skipping BookLoan contract from message {key} because {reason}, BookId={bookId} ReaderId={readerId}", messageKey, error, dto.BookId, dto.ReaderId);
 
                 continue;
             }
