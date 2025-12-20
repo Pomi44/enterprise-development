@@ -1,3 +1,4 @@
+using Confluent.Kafka;
 using Library.Application;
 using Library.Application.Contracts;
 using Library.Application.Contracts.BookLoans;
@@ -10,6 +11,8 @@ using Library.Domain;
 using Library.Domain.Models;
 using Library.Infrastructure.EfCore;
 using Library.Infrastructure.EfCore.Repositories;
+using Library.Infrastructure.Kafka;
+using Library.Infrastructure.Kafka.Deserializers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +57,21 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.AddMySqlDbContext<LibraryDbContext>(connectionName: "DefaultConnection");
+
+builder.AddKafkaConsumer<Guid, IList<BookLoanCreateUpdateDto>>("library-kafka",
+    configureBuilder: builder =>
+    {
+        builder.SetKeyDeserializer(new GuidKeyDeserializer());
+        builder.SetValueDeserializer(new BookLoanValueDeserializer());
+    },
+    configureSettings: settings =>
+    {
+        settings.Config.GroupId = "book-loan-consumer";
+        settings.Config.AutoOffsetReset = AutoOffsetReset.Earliest;
+    }
+);
+
+builder.Services.AddHostedService<BookLoanKafkaConsumer>();
 
 var app = builder.Build();
 
