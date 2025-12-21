@@ -16,8 +16,8 @@ public class BookLoanGenerator
     public static IList<BookLoanCreateUpdateDto> Generate(int count) =>
         new Faker<BookLoanCreateUpdateDto>()
             .WithRecord()
-            .RuleFor(x => x.BookId, f => f.Random.Int(-10, 20))
-            .RuleFor(x => x.ReaderId, f => f.Random.Int(-5, 15))
+            .RuleFor(x => x.BookId, f => f.Random.Int(1, 26))
+            .RuleFor(x => x.ReaderId, f => f.Random.Int(1, 20))
             .RuleFor(x => x.LoanDate, f => f.Date.Between(DateTime.UtcNow.AddYears(-1), DateTime.UtcNow))
             .RuleFor(x => x.Days, f => f.Random.Int(1, 60))
             .RuleFor(x => x.ReturnDate, (f, x) =>
